@@ -40,6 +40,53 @@ student1 <- data.frame() # 데이터 프레임 입력에 편리한 도구 edit
 student1 <- edit(student1) # 표를 생성할 때 사용
 View(student1)
 
-setwd("D:/R with Big Data/강의 실습자료/ch_06/Data")
+setwd("D:/R with Big Data/강의 실습자료/ch_06")
 txtLines <- readLines("ch6_movie_list.txt")
 print(txtLines)
+
+setwd("D:/R with Big Data/강의 실습자료/ch_06")
+eng <- scan("ch6_score.txt")
+print(eng)
+
+setwd("D:/R with Big Data/강의 실습자료/ch_06")
+listvalue <- scan("ch6_score_list.txt",what = list(name= character(), 
+                                                   kor = numeric(), 
+                                                   eng = numeric(), mat = numeric()))
+cat("\nlistvalue : \n");
+print(listvalue)
+
+setwd("D:/R with Big Data/강의 실습자료/ch_06")
+score1 <- read.table("ch6_score_list.txt", header = FALSE, stringsAsFactors = FALSE)
+print(score1)
+
+setwd("D:/R with Big Data/강의 실습자료/ch_06")
+score1 <- read.table("ch6_score_space.txt", header = TRUE, stringsAsFactors = FALSE)
+print(score1)
+
+setwd("D:/R with Big Data/강의 실습자료/ch_06")
+score2 <- read.table("ch6_score_comma.csv", header = TRUE, sep = ",",
+                     stringsAsFactor = FALSE)
+print(score2)
+
+setwd("D:/R with Big Data/강의 실습자료/ch_06")
+kor = c(80, 90, 70)
+write.table(kor, "kor1.txt")
+write.table(kor, "kor2.txt", quote = FALSE , row.names = FALSE, col.names = FALSE)
+
+# 데이터 불러오기
+setwd("D:/R with Big Data/강의 실습자료/ch_06")
+score1 <- read.table("ch6_score_space.txt", header = TRUE, stringsAsFactors = FALSE)
+print(score1)
+
+# 각 학생의 국영수 성적 합계 및 평균 구하기
+sumValue <- apply(score1[c(2:4)],1, sum)
+avgValue <- apply(score1[c(2:4)],1, mean)
+cat("sumValue : \n"); print(sumValue)
+cat("avgValue : \n"); print(avgValue)
+
+# 국영수 성적에 합계와 평균에 해당하는 열 추가하기
+score2 <- cbind(score1, sum = sumValue, avg = avgValue)
+print(score2)
+
+# 텍스트 파일로 저장하기
+write.table(score2, "score2.txt", quote = FALSE, row.names = FALSE, col.names= TRUE)
