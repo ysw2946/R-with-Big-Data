@@ -46,6 +46,7 @@ print(capital_txt)
 grade <- c("B","C","C","B","A","C","C")
 freq_grade <- table(grade); print(freq_grade)
 
+library(tm)
 setwd("D:/R with Big Data/강의 실습자료/ch_09")
 lyrics <- readLines("ch9_2_jingle_bells.txt")
 
@@ -66,7 +67,7 @@ barplot(lyricsCount, horiz=TRUE,las=1,xlim=c(0,7),col="orange",main="jingle_bell
 
 lyricswordListNotUsed <- removeWords(lyricswordList, stopwords("en"))
 
-lyricswordListNotUsed <- lyricsworldListNotUsed[nchar(lyricsworldListNotUsed) >=1]
+lyricswordListNotUsed <- lyricswordListNotUsed[nchar(lyricswordListNotUsed) >=1]
 lyricswordListNotUsed <- table(lyricswordListNotUsed)
 lyricswordListNotUsed <- sort(lyricswordListNotUsed, decreasing = TRUE)
 lyricswordListNotUsed <- lyricswordListNotUsed[lyricswordListNotUsed >= 2]
